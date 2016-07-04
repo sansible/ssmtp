@@ -1,0 +1,13 @@
+---
+
+ssmtp:
+  # User and group that will be able to use ssmtp
+  group: ~
+  user: ~
+
+  # Config for mailserver
+  config:
+    host: ~
+    password: ~
+    port: ~
+    username: ~

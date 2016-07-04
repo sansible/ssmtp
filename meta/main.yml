@@ -1,0 +1,14 @@
+---
+
+galaxy_info:
+  author: "David Reed"
+  description: "Install SSMTP for sending mail."
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+  categories:
+    - development

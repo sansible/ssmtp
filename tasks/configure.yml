@@ -1,0 +1,20 @@
+---
+
+- name: Ensure hostname is resolvable
+  become: yes
+  lineinfile:
+    dest: /etc/hosts
+    line: "127.0.0.1 localhost {{ ansible_hostname }}"
+    regexp: ^127\.0\.0\.1
+
+- name: Ensure ssmtp configuration
+  become: yes
+  template:
+    dest: "/etc/ssmtp/{{ item }}"
+    group: "{{ ssmtp.group }}"
+    mode: 0600
+    owner: "{{ ssmtp.user }}"
+    src: "{{ item }}.j2"
+  with_items:
+    - revaliases
+    - ssmtp.conf
