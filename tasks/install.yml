@@ -1,0 +1,29 @@
+---
+
+- name: Ensure hostname is resolvable
+  become: yes
+  lineinfile:
+    dest: /etc/hosts
+    line: "127.0.0.1 localhost {{ ansible_hostname }}"
+    regexp: ^127\.0\.0\.1
+
+- name: Install ssmtp packages
+  become: yes
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - ssmtp
+
+- name: Add ssmtp group for restricted usage
+  become: yes
+  group:
+    name: ssmtp
+    state: present
+
+- name: Restrict ssmtp usage
+  become : yes
+  file:
+    dest: /usr/sbin/ssmtp
+    owner: "{{ ssmtp.user }}"
+    group: "{{ ssmtp.group }}"
+    mode: 0700

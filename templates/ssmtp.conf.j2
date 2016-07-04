@@ -1,0 +1,7 @@
+mailhub={{ ssmtp.config.host }}:{{ ssmtp.config.port }}
+
+UseTLS=Yes
+UseSTARTTLS=Yes
+
+AuthUser={{ ssmtp.config.username }}
+AuthPass={{ ssmtp.config.password }}
