@@ -1,7 +1,20 @@
 mailhub={{ ssmtp.config.host }}:{{ ssmtp.config.port }}
 
+{% if ssmtp.config.root != false %}
+Root={{ ssmtp.config.root }}
+{% endif %}
+{% if ssmtp.config.rewritedomain != false %}
+RewriteDomain={{ ssmtp.config.rewritedomain }}
+{% endif %}
+{% if ssmtp.config.fromlineoverride != false %}
+FromLineOverride={{ ssmtp.config.fromlineoverride }}
+{% endif %}
 UseTLS=Yes
 UseSTARTTLS=Yes
-
+{% if ssmtp.use_inventory_hostname == true %}
+hostname={{ inventory_hostname }}
+{% endif %}
+{% if ssmtp.auth == true %}
 AuthUser={{ ssmtp.config.username }}
 AuthPass={{ ssmtp.config.password }}
+{% endif %}

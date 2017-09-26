@@ -19,6 +19,7 @@
   group:
     name: ssmtp
     state: present
+  when: ssmtp.restrict
 
 - name: Restrict ssmtp usage
   become : yes
@@ -27,3 +28,4 @@
     owner: "{{ ssmtp.user }}"
     group: "{{ ssmtp.group }}"
     mode: 0700
+  when: ssmtp.restrict

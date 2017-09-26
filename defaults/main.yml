@@ -1,13 +1,20 @@
 ---
 
 ssmtp:
+  auth: true
   # User and group that will be able to use ssmtp
   group: ~
+  restrict: true
+  revaliases: true
+  use_inventory_hostname: false
   user: ~
-
   # Config for mailserver
   config:
+    fromlineoverride: false
     host: ~
     password: ~
     port: ~
+    rewritedomain: false
+    root: false
     username: ~
+
