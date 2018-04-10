@@ -1,5 +1,14 @@
 ---
 
+- name: Assert sansible_ssmtp_group and sansible_ssmtp_user Are Used Together
+  assert:
+    that:
+      - sansible_ssmtp_group is not none
+      - sansible_ssmtp_user is not none
+  when: sansible_ssmtp_group is not none
+          or
+        sansible_ssmtp_user is not none
+
 - name: Install SSMTP
   include: install.yml
   tags:

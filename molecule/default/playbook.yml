@@ -1,0 +1,13 @@
+---
+
+- name: Converge
+  hosts: all
+
+  roles:
+    - role: ssmtp
+      sansible_ssmtp_user: ssmtp_user
+      sansible_ssmtp_group: ssmtp_group
+      sansible_ssmtp_mailserver_host: localhost
+      sansible_ssmtp_mailserver_password: swordfish
+      sansible_ssmtp_mailserver_port: 25
+      sansible_ssmtp_mailserver_username: john_doe

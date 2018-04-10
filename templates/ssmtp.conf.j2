@@ -1,20 +1,20 @@
-mailhub={{ ssmtp.config.host }}:{{ ssmtp.config.port }}
+mailhub={{ sansible_ssmtp_mailserver_host }}:{{ sansible_ssmtp_mailserver_port }}
 
-{% if ssmtp.config.root != false %}
-Root={{ ssmtp.config.root }}
+{% if sansible_ssmtp_mailserver_root != false %}
+Root={{ sansible_ssmtp_mailserver_root }}
 {% endif %}
-{% if ssmtp.config.rewritedomain != false %}
-RewriteDomain={{ ssmtp.config.rewritedomain }}
+{% if sansible_ssmtp_mailserver_rewritedomain != false %}
+RewriteDomain={{ sansible_ssmtp_mailserver_rewritedomain }}
 {% endif %}
-{% if ssmtp.config.fromlineoverride != false %}
-FromLineOverride={{ ssmtp.config.fromlineoverride }}
+{% if sansible_ssmtp_mailserver_fromlineoverride != false %}
+FromLineOverride={{ sansible_ssmtp_mailserver_fromlineoverride }}
 {% endif %}
 UseTLS=Yes
 UseSTARTTLS=Yes
-{% if ssmtp.use_inventory_hostname == true %}
+{% if sansible_ssmtp_use_inventory_hostname == true %}
 hostname={{ inventory_hostname }}
 {% endif %}
-{% if ssmtp.auth == true %}
-AuthUser={{ ssmtp.config.username }}
-AuthPass={{ ssmtp.config.password }}
+{% if sansible_ssmtp_auth == true %}
+AuthUser={{ sansible_ssmtp_mailserver_username }}
+AuthPass={{ sansible_ssmtp_mailserver_password }}
 {% endif %}

@@ -1,31 +1,26 @@
 ---
 
-- name: Ensure hostname is resolvable
+- name: Ensure Hostname is Resolvable
   become: yes
   lineinfile:
     dest: /etc/hosts
     line: "127.0.0.1 localhost {{ ansible_hostname }}"
     regexp: ^127\.0\.0\.1
+  when: ansible_virtualization_type != 'docker'
 
-- name: Install ssmtp packages
+- name: Install SSMTP
   become: yes
   apt:
-    name: "{{ item }}"
-  with_items:
-    - ssmtp
-
-- name: Add ssmtp group for restricted usage
-  become: yes
-  group:
     name: ssmtp
-    state: present
-  when: ssmtp.restrict
 
-- name: Restrict ssmtp usage
-  become : yes
+- name: "Restrict SSMTP Usage to User {{ sansible_ssmtp_user }} and Group {{ sansible_ssmtp_group }}"
+  become: yes
   file:
     dest: /usr/sbin/ssmtp
-    owner: "{{ ssmtp.user }}"
-    group: "{{ ssmtp.group }}"
-    mode: 0700
-  when: ssmtp.restrict
+    owner: "{{ sansible_ssmtp_user }}"
+    group: "{{ sansible_ssmtp_group }}"
+    mode: 0770
+  when:
+    - sansible_ssmtp_group is not none
+    - sansible_ssmtp_user is not none
+    - sansible_ssmtp_restrict
