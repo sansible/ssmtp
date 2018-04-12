@@ -1,19 +1,20 @@
 ---
 
-- name: Ensure hostname is resolvable
+- name: Ensure Hostname is Resolvable
   become: yes
   lineinfile:
     dest: /etc/hosts
     line: "127.0.0.1 {{ ansible_hostname }} {{ inventory_hostname }} localhost"
     regexp: ^127\.0\.0\.1
+  when: ansible_virtualization_type != 'docker'
 
-- name: Ensure ssmtp configuration
+- name: Ensure SSMTP Configuration
   become: yes
   template:
     dest: "/etc/ssmtp/{{ item }}"
-    group: "{{ ssmtp.group }}"
+    group: "{{ sansible_ssmtp_group }}"
     mode: 0600
-    owner: "{{ ssmtp.user }}"
+    owner: "{{ sansible_ssmtp_user }}"
     src: "{{ item }}.j2"
   with_items:
     - revaliases

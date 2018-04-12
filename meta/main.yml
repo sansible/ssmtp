@@ -1,16 +1,25 @@
 ---
 
-dependencies: [ ]
-
 galaxy_info:
-  author: "David Reed"
-  description: "Install SSMTP for sending mail."
+  description: "Install SSMTP for Sending Mail."
   license: MIT
-  min_ansible_version: 1.9
+  min_ansible_version: 2.2
   platforms:
     - name: Ubuntu
       versions:
-        - precise
         - trusty
+        - xenial
+        - bionic
   categories:
     - development
+
+dependencies:
+  - role: sansible.users_and_groups
+    sansible_users_and_groups_groups:
+      - name: "{{ sansible_ssmtp_group }}"
+    sansible_users_and_groups_users:
+      - name: "{{ sansible_ssmtp_user }}"
+        group: "{{ sansible_ssmtp_group }}"
+    when:
+      - sansible_ssmtp_group is not none
+      - sansible_ssmtp_user is not none
