@@ -24,3 +24,16 @@
     - sansible_ssmtp_group is not none
     - sansible_ssmtp_user is not none
     - sansible_ssmtp_restrict
+
+- name: "Allow access to SSMTP Configuration dir to User {{ sansible_ssmtp_user }} and Group {{ sansible_ssmtp_group }}"
+  become: yes
+  file:
+    dest: /etc/ssmtp
+    group: "{{ sansible_ssmtp_group }}"
+    mode: 0600
+    owner: "{{ sansible_ssmtp_user }}"
+    state: directory
+  when:
+    - sansible_ssmtp_group is not none
+    - sansible_ssmtp_user is not none
+    - sansible_ssmtp_restrict

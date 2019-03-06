@@ -17,7 +17,7 @@ or add this to your `roles.yml`
 
 ```YAML
 - name: sansible.ssmtp
-  version: v2.0
+  version: v2.1.x
 ```
 
 and run `ansible-galaxy install -p ./roles -r roles.yml`
