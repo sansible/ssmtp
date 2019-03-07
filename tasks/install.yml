@@ -30,7 +30,7 @@
   file:
     dest: /etc/ssmtp
     group: "{{ sansible_ssmtp_group }}"
-    mode: 0600
+    mode: 0700
     owner: "{{ sansible_ssmtp_user }}"
     state: directory
   when:
