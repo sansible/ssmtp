@@ -13,3 +13,6 @@ sansible_ssmtp_restrict: yes
 sansible_ssmtp_revaliases: yes
 sansible_ssmtp_use_inventory_hostname: no
 sansible_ssmtp_user: ~
+sansible_ssmtp_hostname: ''
+sansible_ssmtp_use_tls: true
+sansible_ssmtp_use_start_tls: true

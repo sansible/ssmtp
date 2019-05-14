@@ -9,10 +9,17 @@ RewriteDomain={{ sansible_ssmtp_mailserver_rewritedomain }}
 {% if sansible_ssmtp_mailserver_fromlineoverride != false %}
 FromLineOverride={{ sansible_ssmtp_mailserver_fromlineoverride }}
 {% endif %}
+{% if sansible_ssmtp_use_tls %}
 UseTLS=Yes
+{% endif %}
+{% if sansible_ssmtp_use_start_tls %}
 UseSTARTTLS=Yes
+{% endif %}
 {% if sansible_ssmtp_use_inventory_hostname == true %}
 hostname={{ inventory_hostname }}
+{% endif %}
+{% if sansible_ssmtp_use_inventory_hostname == false and sansible_ssmtp_hostname != '' %}
+hostname={{ sansible_ssmtp_hostname }}
 {% endif %}
 {% if sansible_ssmtp_auth == true %}
 AuthUser={{ sansible_ssmtp_mailserver_username }}
