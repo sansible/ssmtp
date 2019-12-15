@@ -6,7 +6,7 @@
     dest: /etc/hosts
     line: "127.0.0.1 localhost {{ ansible_hostname }}"
     regexp: ^127\.0\.0\.1
-  when: ansible_virtualization_type != 'docker'
+  when: ansible_virtualization_type is not defined or ansible_virtualization_type != 'docker'
 
 - name: Install SSMTP
   become: yes
