@@ -14,6 +14,7 @@ UseTLS=Yes
 {% endif %}
 {% if sansible_ssmtp_use_start_tls %}
 UseSTARTTLS=Yes
+TLS_CA_File=/etc/pki/tls/certs/ca-bundle.crt
 {% endif %}
 {% if sansible_ssmtp_use_inventory_hostname == true %}
 hostname={{ inventory_hostname }}
