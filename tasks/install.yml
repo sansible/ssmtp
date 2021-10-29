@@ -4,7 +4,7 @@
   become: yes
   lineinfile:
     dest: /etc/hosts
-    line: "127.0.0.1 localhost {{ ansible_hostname }}"
+    line: "127.0.0.1 {{ ansible_hostname }} {{ inventory_hostname }} localhost"
     regexp: ^127\.0\.0\.1
   when: ansible_virtualization_type != 'docker'
 
