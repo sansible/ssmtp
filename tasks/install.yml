@@ -10,8 +10,9 @@
 
 - name: Install SSMTP
   become: yes
-  apt:
+  package:
     name: ssmtp
+    state: present
 
 - name: "Restrict SSMTP Usage to User {{ sansible_ssmtp_user }} and Group {{ sansible_ssmtp_group }}"
   become: yes
